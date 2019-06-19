@@ -1,2 +1,5 @@
 # travelpath-builder
-Application for building Grodno tourist travel pathes
+
+Приложение для построения туристических маршрутов для города Гродно.
+
+Учебный проект
