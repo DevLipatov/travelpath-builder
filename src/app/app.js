@@ -2,9 +2,9 @@ import React from 'react';
 import {
     Navbar, Nav, Form, Button, Container, Row, Col, ListGroup, InputGroup,
     FormControl
-} from 'react-bootstrap'
+} from 'react-bootstrap';
 
-import './app.css'
+import './app.css';
 
 const App = () => {
     return (
