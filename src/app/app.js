@@ -3,6 +3,7 @@ import {
     Navbar, Nav, Form, Button, Container, Row, Col, ListGroup, InputGroup,
     FormControl
 } from 'react-bootstrap';
+import MyLeafletMap from '../my-leaflet-map';
 
 import './app.css';
 
@@ -41,7 +42,7 @@ const App = () => {
                         </ListGroup>
                     </Col>
                     <Col sm={8}>
-                        map
+                        <MyLeafletMap/>
                     </Col>
                 </Row>
             </Container>
