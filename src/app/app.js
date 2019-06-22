@@ -1,51 +1,22 @@
 import React from 'react';
-import {
-    Navbar, Nav, Form, Button, Container, Row, Col, ListGroup, InputGroup,
-    FormControl
-} from 'react-bootstrap';
-import MyLeafletMap from '../my-leaflet-map';
+import {BrowserRouter as Router} from 'react-router-dom';
+import Route from "react-router-dom/es/Route";
+import NewPathPage from '../new-path-page';
+import ReadyPathPage from '../ready-path-page';
+import NavbarHeader from '../navbar-header';
+import MyPathPage from '../my-path-page';
 
 import './app.css';
 
 const App = () => {
     return (
         <div>
-            <Navbar bg="dark" variant="dark" expand="lg">
-                <Navbar.Brand href="#home">Travelpath builder</Navbar.Brand>
-                <Nav className="mr-auto">
-                    <Nav.Link href="#new">New path</Nav.Link>
-                    <Nav.Link href="#ready">Ready paths</Nav.Link>
-                    <Nav.Link href="#my">My paths</Nav.Link>
-                </Nav>
-                <Form inline>
-                    <Button variant="outline-info">Register</Button>
-                    <Button variant="outline-info">Login</Button>
-                </Form>
-            </Navbar>
-            <Container>
-                <Row>
-                    <Col sm={2}>
-                        <InputGroup className="mb-3">
-                            <FormControl
-                                placeholder="Enter your location"
-                            />
-                            <InputGroup.Append>
-                                <Button variant="primary">Find</Button>
-                            </InputGroup.Append>
-                        </InputGroup>
-                        <ListGroup>
-                            <ListGroup.Item>Place1</ListGroup.Item>
-                            <ListGroup.Item>Place2</ListGroup.Item>
-                            <ListGroup.Item>Place3</ListGroup.Item>
-                            <ListGroup.Item>Place4</ListGroup.Item>
-                            <ListGroup.Item>Place5</ListGroup.Item>
-                        </ListGroup>
-                    </Col>
-                    <Col sm={8}>
-                        <MyLeafletMap/>
-                    </Col>
-                </Row>
-            </Container>
+            <Router>
+                <NavbarHeader/>
+                <Route path="/new" component={NewPathPage}/>
+                <Route path="/ready" component={ReadyPathPage}/>
+                <Route path="/my" component={MyPathPage}/>
+            </Router>
         </div>
     )
 };

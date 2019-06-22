@@ -1,0 +1,12 @@
+.navbar {
+    min-height: 5rem;
+    height: 50px;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.navbar-brand {
+    font-size: 2rem;
+    font-family: Algerian;
+    margin-right: 3rem;
+}

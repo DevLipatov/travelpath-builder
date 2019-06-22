@@ -1,0 +1,12 @@
+.form-inline .btn {
+    font-size: 1.5rem;
+    margin: auto 1rem auto 1rem;
+}
+
+.container {
+    max-width: 100%;
+}
+
+.col-sm-8 .nav {
+    margin-bottom: 1rem;
+}
