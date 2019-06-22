@@ -1,9 +1,13 @@
 import React from 'react';
 import {
-    Nav, Button, Container, Row, Col,
-    ListGroup, InputGroup, FormControl
+    Button, Container, Row, Col,
+    ListGroup, InputGroup, FormControl, Tabs, Tab, ButtonToolbar
 } from 'react-bootstrap';
 import MyLeafletMap from '../my-leaflet-map';
+import ListOfPlacesComponent from '../list-of-places-component';
+import SortGroupBar from "../sort-group-bar";
+import data from '../mock-data/mock-data';
+import categories from '../mock-data/mock-categories';
 
 import './new-path-page.css';
 
@@ -28,24 +32,15 @@ const NewPathPage = () => {
                         </ListGroup>
                     </Col>
                     <Col sm={10}>
-                        <Nav fill variant="tabs" defaultActiveKey="/">
-                            <Nav.Item>
-                                <Nav.Link href="/">
-                                    Map
-                                </Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link eventKey="link-1">
-                                    List of paths
-                                </Nav.Link>
-                            </Nav.Item>
-                            <Nav.Item>
-                                <Nav.Link eventKey="disabled" disabled>
-                                    Disabled
-                                </Nav.Link>
-                            </Nav.Item>
-                        </Nav>
-                        <MyLeafletMap/>
+                        <SortGroupBar categs={categories}/>
+                        <Tabs justify defaultActiveKey="home">
+                            <Tab eventKey="home" title="Map">
+                                <MyLeafletMap/>
+                            </Tab>
+                            <Tab eventKey="profile" title="List of places">
+                                <ListOfPlacesComponent data={data}/>
+                            </Tab>
+                        </Tabs>
                     </Col>
                 </Row>
             </Container>

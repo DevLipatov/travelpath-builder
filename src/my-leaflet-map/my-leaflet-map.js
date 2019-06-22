@@ -4,9 +4,9 @@ import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 import './my-leaflet-map.css';
 
 const MyLeafletMap = () => {
-    const position = [51.505, -0.09];
+    const position = [53.678732, 23.824612];
     return (
-        <Map center={position} zoom={6}>
+        <Map center={position} zoom={16}>
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution="&copy;

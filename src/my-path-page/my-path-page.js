@@ -5,7 +5,7 @@ import './my-path-page.css';
 const MyPathPage = () => {
     return (
         <div>
-
+            My paths
         </div>
     )
 };

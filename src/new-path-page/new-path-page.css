@@ -7,6 +7,18 @@
     max-width: 100%;
 }
 
-.col-sm-8 .nav {
+.col-sm-10 .nav {
     margin-bottom: 1rem;
+}
+
+.tab-content {
+    width: 100%;
+}
+
+.fade {
+    width: 100%;
+}
+
+.btn-toolbar .btn {
+    margin: auto 0.5rem 1rem 0.5rem;
 }

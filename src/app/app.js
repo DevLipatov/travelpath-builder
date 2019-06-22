@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
-import Route from "react-router-dom/es/Route";
+import {Route} from "react-router-dom";
 import NewPathPage from '../new-path-page';
 import ReadyPathPage from '../ready-path-page';
 import NavbarHeader from '../navbar-header';
@@ -13,7 +13,7 @@ const App = () => {
         <div>
             <Router>
                 <NavbarHeader/>
-                <Route path="/new" component={NewPathPage}/>
+                <Route path="/" exact component={NewPathPage}/>
                 <Route path="/ready" component={ReadyPathPage}/>
                 <Route path="/my" component={MyPathPage}/>
             </Router>
