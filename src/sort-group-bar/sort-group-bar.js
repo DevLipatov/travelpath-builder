@@ -6,7 +6,7 @@ const SortGroupBar = ({categs}) => {
 
     const elements = categs.map(
         (item) => {
-            return (<Button variant="outline-secondary">{item}</Button>)
+            return (<Button variant="outline-secondary" key={item}>{item}</Button>)
         }
     );
 

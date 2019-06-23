@@ -1,12 +1,12 @@
 import React from 'react';
 import {
     Button, Container, Row, Col,
-    ListGroup, InputGroup, FormControl, Tabs, Tab, ButtonToolbar
+    ListGroup, InputGroup, FormControl, Tabs, Tab
 } from 'react-bootstrap';
 import MyLeafletMap from '../my-leaflet-map';
 import ListOfPlacesComponent from '../list-of-places-component';
 import SortGroupBar from "../sort-group-bar";
-import data from '../mock-data/mock-data';
+import MockData from '../mock-data/mock-data';
 import categories from '../mock-data/mock-categories';
 
 import './new-path-page.css';
@@ -38,7 +38,7 @@ const NewPathPage = () => {
                                 <MyLeafletMap/>
                             </Tab>
                             <Tab eventKey="profile" title="List of places">
-                                <ListOfPlacesComponent data={data}/>
+                                <ListOfPlacesComponent data={MockData}/>
                             </Tab>
                         </Tabs>
                     </Col>
