@@ -8,9 +8,22 @@ export default class DataService {
         )
     }
 
-    findByInPath(state) {
+    findByInPath() {
         return MockData.filter(
             (el) => el.inpath
         )
+    }
+
+    getAllCoordinates() {
+        let coordinatesArray = [];
+        MockData.map(
+            (el) => (coordinatesArray = [...coordinatesArray,
+                {
+                    key: el.id,
+                    coordinates: el.coordinates
+                }])
+        );
+
+        return coordinatesArray
     }
 }
