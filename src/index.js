@@ -1,5 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app'
+import {Provider} from 'react-redux';
+import App from './components/app'
+import ErrorBoundry from './components/error-boundry';
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+import store from './store';
+
+ReactDOM.render(
+    <Provider store={store}>
+        <ErrorBoundry>
+            <App/>
+        </ErrorBoundry>
+    </Provider>
+    , document.getElementById('root')
+);

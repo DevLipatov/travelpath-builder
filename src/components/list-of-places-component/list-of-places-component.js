@@ -15,7 +15,10 @@ const ListOfPlacesComponent = ({data}) => {
                         <Card.Text>{item.description}</Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <a className="text-muted" href={item.wiki} target="_blank" rel="noopener noreferrer">
+                        <a className="text-muted"
+                           href={item.wiki}
+                           target="_blank"
+                           rel="noopener noreferrer">
                             {item.wiki}
                         </a>
                     </Card.Footer>

@@ -1,5 +1,5 @@
 import React from 'react';
-import DataService from '../data-service';
+import DataService from '../../services/index';
 
 import './ready-path-page.css';
 

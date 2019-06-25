@@ -18,12 +18,29 @@ export default class DataService {
         let coordinatesArray = [];
         MockData.map(
             (el) => (coordinatesArray = [...coordinatesArray,
-                {
-                    key: el.id,
-                    coordinates: el.coordinates
-                }])
+                    {
+                        id: el.id,
+                        coordinates: el.coordinates
+                    }]
+            )
         );
-
         return coordinatesArray
+    }
+
+    getShortInfo() {
+        let shortInfo = [];
+        MockData.map(
+            (el) => (shortInfo = [...shortInfo,
+                    {
+                        id: el.id,
+                        title: el.title,
+                    }]
+            )
+        );
+        return shortInfo
+    }
+
+    getFullInfo() {
+        return MockData
     }
 }

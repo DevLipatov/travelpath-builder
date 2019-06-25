@@ -1,6 +1,6 @@
 import React from 'react';
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
-import DataService from '../data-service/data-service';
+import DataService from '../../services/data-service';
 
 import './my-leaflet-map.css';
 
@@ -12,7 +12,7 @@ const MyLeafletMap = () => {
     const allMarkers = allCoordinates.map(
         (el) => {
             return (
-                <Marker position={el.coordinates} id={el.id}>
+                <Marker position={el.coordinates} key={el.id}>
                     <Popup>
                         My first marker
                         <br/>
@@ -32,7 +32,7 @@ const MyLeafletMap = () => {
                 OpenStreetMap
                 </a>
                 contributors"/>
-            <Marker position={parkingPosition}>
+            <Marker position={parkingPosition} >
                 <Popup>
                     My first marker
                     <br/>

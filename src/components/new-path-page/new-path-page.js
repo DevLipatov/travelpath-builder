@@ -1,13 +1,13 @@
 import React from 'react';
 import {
     Button, Container, Row, Col,
-    ListGroup, InputGroup, FormControl, Tabs, Tab
+    InputGroup, FormControl, Tabs, Tab
 } from 'react-bootstrap';
-import MyLeafletMap from '../my-leaflet-map';
-import ListOfPlacesComponent from '../list-of-places-component';
-import SortGroupBar from "../sort-group-bar";
-import MockData from '../mock-data/mock-data';
-import categories from '../mock-data/mock-categories';
+import MyLeafletMap from '../leaflet-map/index';
+import ListOfPlacesComponent from '../list-of-places-component/index';
+import PathListGroup from '../path-list-group';
+import SortGroupBar from "../sort-group-bar/index";
+import MockData from '../../mock-data/mock-data';
 
 import './new-path-page.css';
 
@@ -23,16 +23,10 @@ const NewPathPage = () => {
                                 <Button variant="primary">Find</Button>
                             </InputGroup.Append>
                         </InputGroup>
-                        <ListGroup>
-                            <ListGroup.Item>Place1</ListGroup.Item>
-                            <ListGroup.Item>Place2</ListGroup.Item>
-                            <ListGroup.Item>Place3</ListGroup.Item>
-                            <ListGroup.Item>Place4</ListGroup.Item>
-                            <ListGroup.Item>Place5</ListGroup.Item>
-                        </ListGroup>
+                        <PathListGroup/>
                     </Col>
                     <Col sm={10}>
-                        <SortGroupBar categs={categories}/>
+                        <SortGroupBar/>
                         <Tabs justify defaultActiveKey="home">
                             <Tab eventKey="home" title="Map">
                                 <MyLeafletMap/>
