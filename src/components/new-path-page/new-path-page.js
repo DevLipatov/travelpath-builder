@@ -7,7 +7,6 @@ import MyLeafletMap from '../leaflet-map/index';
 import ListOfPlacesComponent from '../list-of-places-component/index';
 import PathListGroup from '../path-list-group';
 import SortGroupBar from "../sort-group-bar/index";
-import MockData from '../../mock-data/mock-data';
 
 import './new-path-page.css';
 
@@ -32,7 +31,7 @@ const NewPathPage = () => {
                                 <MyLeafletMap/>
                             </Tab>
                             <Tab eventKey="profile" title="List of places">
-                                <ListOfPlacesComponent data={MockData}/>
+                                <ListOfPlacesComponent/>
                             </Tab>
                         </Tabs>
                     </Col>

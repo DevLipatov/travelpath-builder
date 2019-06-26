@@ -1,22 +1,23 @@
-import MockData from '../mock-data/mock-data';
+import mockData from '../mock-data/mock-data';
+import mockCategories from '../mock-data/mock-categories';
 
 export default class DataService {
 
     findByCategory(category) {
-        return MockData.filter(
+        return mockData.filter(
             (el) => el.category === category
         )
     }
 
     findByInPath() {
-        return MockData.filter(
+        return mockData.filter(
             (el) => el.inpath
         )
     }
 
     getAllCoordinates() {
         let coordinatesArray = [];
-        MockData.map(
+        mockData.map(
             (el) => (coordinatesArray = [...coordinatesArray,
                     {
                         id: el.id,
@@ -29,7 +30,7 @@ export default class DataService {
 
     getShortInfo() {
         let shortInfo = [];
-        MockData.map(
+        mockData.map(
             (el) => (shortInfo = [...shortInfo,
                     {
                         id: el.id,
@@ -41,6 +42,10 @@ export default class DataService {
     }
 
     getFullInfo() {
-        return MockData
+        return mockData
+    }
+
+    detCategories() {
+        return mockCategories;
     }
 }

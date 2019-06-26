@@ -1,4 +1,4 @@
-const categories = [
+const mockCategories = [
     "All",
     "Cathedrals and churches",
     "Museums",
@@ -9,4 +9,4 @@ const categories = [
     "Hotels"
 ];
 
-export default categories;
+export default mockCategories;

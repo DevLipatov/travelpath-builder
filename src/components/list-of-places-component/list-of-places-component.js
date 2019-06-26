@@ -1,11 +1,12 @@
 import React from 'react';
 import {Card, CardColumns} from "react-bootstrap";
+import {withDataService} from '../hoc';
 
 import './list-of-places-component.css';
 
-const ListOfPlacesComponent = ({data}) => {
+const ListOfPlacesComponent = ({dataService}) => {
 
-    const elements = data.map(
+    const elements = dataService.getFullInfo().map(
         (item) => {
             return (
                 <Card border="info" key={item.id}>
@@ -29,4 +30,4 @@ const ListOfPlacesComponent = ({data}) => {
     return <CardColumns>{elements}</CardColumns>
 };
 
-export default ListOfPlacesComponent;
+export default withDataService()(ListOfPlacesComponent);
