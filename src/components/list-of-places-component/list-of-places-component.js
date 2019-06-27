@@ -11,10 +11,10 @@ import './list-of-places-component.css';
 class ListOfPlacesComponent extends Component {
 
     componentDidMount() {
-        const {dataService} = this.props;
-        const fullInfo = dataService.getFullInfo();
-
-        this.props.fullInfoLoaded(fullInfo);
+        const {dataService, fullInfoLoaded} = this.props;
+        dataService.getFullInfo().then(
+            (fullInfo) => fullInfoLoaded(fullInfo)
+        );
     }
 
     render() {

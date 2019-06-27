@@ -12,7 +12,15 @@ const fullInfoLoaded = (fullInfo) => {
     }
 };
 
+const categoriesLoaded = (categories) => {
+    return {
+        type: 'CATEGORIES_LOADED',
+        payload: categories
+    }
+};
+
 export {
     categoryChange,
-    fullInfoLoaded
+    fullInfoLoaded,
+    categoriesLoaded
 };
