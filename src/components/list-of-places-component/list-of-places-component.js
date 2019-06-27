@@ -1,33 +1,43 @@
-import React from 'react';
-import {Card, CardColumns} from "react-bootstrap";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {compose} from "redux";
+import {fullInfoLoaded} from "../../actions";
 import {withDataService} from '../hoc';
+import {CardColumns} from "react-bootstrap";
+import ListOfPlacesItem from '../list-of-places-item';
 
 import './list-of-places-component.css';
 
-const ListOfPlacesComponent = ({dataService}) => {
+class ListOfPlacesComponent extends Component {
 
-    const elements = dataService.getFullInfo().map(
-        (item) => {
-            return (
-                <Card border="info" key={item.id}>
-                    <Card.Img variant="top" src={item.img}/>
-                    <Card.Body>
-                        <Card.Title>{item.title}</Card.Title>
-                        <Card.Text>{item.description}</Card.Text>
-                    </Card.Body>
-                    <Card.Footer>
-                        <a className="text-muted"
-                           href={item.wiki}
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            {item.wiki}
-                        </a>
-                    </Card.Footer>
-                </Card>
-            );
-        }
-    );
-    return <CardColumns>{elements}</CardColumns>
+    componentDidMount() {
+        const {dataService} = this.props;
+        const fullInfo = dataService.getFullInfo();
+
+        this.props.fullInfoLoaded(fullInfo);
+    }
+
+    render() {
+        const {fullInfo} = this.props;
+
+        const elements = fullInfo.map(
+            (item) => {
+                return (
+                    <ListOfPlacesItem itemData={item} key={item.id}/>
+                );
+            }
+        );
+        return <CardColumns>{elements}</CardColumns>
+    }
+}
+
+const mapStateToProps = ({fullInfo}) => {
+    return {fullInfo}
 };
 
-export default withDataService()(ListOfPlacesComponent);
+const mapDispatchToProps = {fullInfoLoaded};
+
+export default compose(
+    withDataService(),
+    connect(mapStateToProps, mapDispatchToProps)
+)(ListOfPlacesComponent);

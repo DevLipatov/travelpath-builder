@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import './sort-group-bar.css';
+import {categoryChange} from "../../actions";
 import {Button, ButtonToolbar} from "react-bootstrap";
 
+import './sort-group-bar.css';
+
 class SortGroupBar extends Component {
+
     render() {
         const {categories, shownCategory} = this.props;
 
@@ -16,9 +19,13 @@ class SortGroupBar extends Component {
 
         const elements = categories.map(
             (item) => {
-                console.log(shownCategory);
-                return (<Button variant={setVariant(item)}
-                                key={item}>{item}</Button>)
+                return (
+                    <Button variant={setVariant(item)}
+                            key={item}
+                            onClick={
+                                () => console.log(this.props.categoryChange(item))}>
+                        {item}
+                    </Button>)
             }
         );
 
@@ -34,4 +41,6 @@ const mapStateToProps = ({categories, shownCategory}) => {
     return {categories, shownCategory}
 };
 
-export default connect(mapStateToProps)(SortGroupBar);
+const mapDispatchToProps = {categoryChange};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SortGroupBar);

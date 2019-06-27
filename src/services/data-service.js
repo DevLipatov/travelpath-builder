@@ -42,10 +42,15 @@ export default class DataService {
     }
 
     getFullInfo() {
+        // return new Promise(
+        //     (resolve) => {
+        //         setTimeout(() => resolve(mockData))
+        //     }, 700
+        // )
         return mockData
     }
 
-    detCategories() {
+    getCategories() {
         return mockCategories;
     }
 }

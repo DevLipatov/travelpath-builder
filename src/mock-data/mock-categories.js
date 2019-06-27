@@ -6,7 +6,8 @@ const mockCategories = [
     "Food",
     "Clubs",
     "Markets",
-    "Hotels"
+    "Hotels",
+    "Parks"
 ];
 
 export default mockCategories;

@@ -1,10 +1,18 @@
-const categoryChanged = (newCategory) => {
+const categoryChange = (newCategory) => {
     return {
-        type: 'CATEGORY_CHANGED',
-        category: newCategory
+        type: 'CHANGE_CATEGORY',
+        payload: newCategory
+    }
+};
+
+const fullInfoLoaded = (fullInfo) => {
+    return {
+        type: 'FULL_INFO_LOADED',
+        payload: fullInfo
     }
 };
 
 export {
-    categoryChanged
+    categoryChange,
+    fullInfoLoaded
 };

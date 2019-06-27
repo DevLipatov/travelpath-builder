@@ -7,7 +7,8 @@ const initialState = {
         "Food",
         "Clubs",
         "Markets",
-        "Hotels"
+        "Hotels",
+        "Parks"
     ],
     shownCategory: "All",
     pathList: [
@@ -19,19 +20,26 @@ const initialState = {
             id: "2",
             title: "Старый замок"
         }
-    ]
+    ],
+    fullInfo: []
 };
 
 const reducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case 'ALL_CATEGORIES' :
-            return {
-                categories: action.categories
-            };
         case 'CHANGE_CATEGORY' :
             return {
-                shownCategory: action.category
+                categories: state.categories,
+                shownCategory: action.payload,
+                pathList: state.pathList,
+                fullInfo: state.fullInfo
+            };
+        case 'FULL_INFO_LOADED' :
+            return {
+                categories: state.categories,
+                shownCategory: state.shownCategory,
+                pathList: state.pathList,
+                fullInfo: action.payload
             };
         default:
             return state;
