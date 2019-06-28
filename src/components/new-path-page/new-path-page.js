@@ -4,7 +4,7 @@ import {
     InputGroup, FormControl, Tabs, Tab
 } from 'react-bootstrap';
 import MyLeafletMap from '../leaflet-map/index';
-import ListOfPlacesComponent from '../list-of-places-component/index';
+import ListOfPlacesComponent from '../list-of-places/index';
 import PathListGroup from '../path-list-group';
 import SortGroupBar from "../sort-group-bar/index";
 

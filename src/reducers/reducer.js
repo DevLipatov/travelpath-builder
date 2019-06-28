@@ -11,17 +11,21 @@ const initialState = {
             title: "Старый замок"
         }
     ],
-    fullInfo: []
+    fullInfo: [],
+    listOfPlacesLoading: true,
+    loading: null
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'CHANGE_CATEGORY' :
             return {...state, shownCategory: action.payload};
-        case 'FULL_INFO_LOADED' :
-            return {...state, fullInfo: action.payload};
-        case 'CATEGORIES_LOADED' :
+        case 'FETCH_FULL_INFO_SUCCESS' :
+            return {...state, fullInfo: action.payload, listOfPlacesLoading: false};
+        case 'FETCH_CATEGORIES_SUCCESS' :
             return {...state, categories: action.payload};
+        case 'LOADING_FAILURE' :
+            return {...state, loading: action.error, listOfPlacesLoading: false};
         default:
             return state;
     }

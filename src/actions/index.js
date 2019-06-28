@@ -1,5 +1,6 @@
 const categoryChange = (newCategory) => {
     return {
+        //TODO rename
         type: 'CHANGE_CATEGORY',
         payload: newCategory
     }
@@ -7,20 +8,37 @@ const categoryChange = (newCategory) => {
 
 const fullInfoLoaded = (fullInfo) => {
     return {
-        type: 'FULL_INFO_LOADED',
+        type: 'FETCH_FULL_INFO_SUCCESS',
         payload: fullInfo
     }
 };
 
 const categoriesLoaded = (categories) => {
     return {
-        type: 'CATEGORIES_LOADED',
+        //TODO rename
+        type: 'FETCH_CATEGORIES_SUCCESS',
         payload: categories
+    }
+};
+
+const lisOfPlacesLoaded = () => {
+    return {
+        //TODO rename
+        type: 'LIST_OF_PLACES_LOADED'
+    }
+};
+
+const loadingError = (error) => {
+    return {
+        type: 'LOADING_FAILURE',
+        payload:  error
     }
 };
 
 export {
     categoryChange,
     fullInfoLoaded,
-    categoriesLoaded
+    categoriesLoaded,
+    lisOfPlacesLoaded,
+    loadingError
 };

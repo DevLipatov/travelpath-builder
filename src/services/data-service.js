@@ -21,7 +21,8 @@ export default class DataService {
             (el) => (coordinatesArray = [...coordinatesArray,
                     {
                         id: el.id,
-                        coordinates: el.coordinates
+                        coordinates: el.coordinates,
+                        category: el.category
                     }]
             )
         );
@@ -44,7 +45,7 @@ export default class DataService {
     getFullInfo() {
         return new Promise(
             (resolve) => {
-                setTimeout(() => resolve(mockData), 1200)
+                setTimeout(() => resolve(mockData), 1700)
             }
         )
     }
