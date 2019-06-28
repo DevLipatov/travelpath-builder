@@ -13,9 +13,15 @@ const fullInfoLoaded = (fullInfo) => {
     }
 };
 
+const shortInfoLoaded = (shortInfo) => {
+    return {
+        type: 'FETCH_SHORT_INFO_SUCCESS',
+        payload: shortInfo
+    }
+};
+
 const categoriesLoaded = (categories) => {
     return {
-        //TODO rename
         type: 'FETCH_CATEGORIES_SUCCESS',
         payload: categories
     }
@@ -40,5 +46,6 @@ export {
     fullInfoLoaded,
     categoriesLoaded,
     lisOfPlacesLoaded,
-    loadingError
+    loadingError,
+    shortInfoLoaded
 };

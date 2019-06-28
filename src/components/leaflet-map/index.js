@@ -1,3 +1,3 @@
-import MyLeafletMap from './my-leaflet-map';
+import LeafletMap from './leaflet-map';
 
-export default MyLeafletMap;
+export default LeafletMap;

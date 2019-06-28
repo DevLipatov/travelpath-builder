@@ -13,7 +13,10 @@ const initialState = {
     ],
     fullInfo: [],
     listOfPlacesLoading: true,
-    loading: null
+    loading: null,
+    shortInfo: [],
+    shortInfoLoading: true,
+
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,6 +29,9 @@ const reducer = (state = initialState, action) => {
             return {...state, categories: action.payload};
         case 'LOADING_FAILURE' :
             return {...state, loading: action.error, listOfPlacesLoading: false};
+        case 'FETCH_SHORT_INFO_SUCCESS' :
+            return {...state, shortInfo: action.payload, shortInfoLoading: false};
+
         default:
             return state;
     }

@@ -3,7 +3,7 @@ import {
     Button, Container, Row, Col,
     InputGroup, FormControl, Tabs, Tab
 } from 'react-bootstrap';
-import MyLeafletMap from '../leaflet-map/index';
+import LeafletMap from '../leaflet-map/index';
 import ListOfPlacesComponent from '../list-of-places/index';
 import PathListGroup from '../path-list-group';
 import SortGroupBar from "../sort-group-bar/index";
@@ -28,7 +28,7 @@ const NewPathPage = () => {
                         <SortGroupBar/>
                         <Tabs justify defaultActiveKey="home">
                             <Tab eventKey="home" title="Map">
-                                <MyLeafletMap/>
+                                <LeafletMap/>
                             </Tab>
                             <Tab eventKey="profile" title="List of places">
                                 <ListOfPlacesComponent/>

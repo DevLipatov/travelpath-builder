@@ -26,7 +26,7 @@ export default class DataService {
                     }]
             )
         );
-        return coordinatesArray
+        return new Promise((resolve) => resolve(coordinatesArray))
     }
 
     getShortInfo() {
@@ -35,11 +35,23 @@ export default class DataService {
             (el) => (shortInfo = [...shortInfo,
                     {
                         id: el.id,
+                        category: el.category,
                         title: el.title,
+                        img: el.img,
+                        coordinates: el.coordinates
                     }]
             )
         );
-        return shortInfo
+        return new Promise((resolve) => resolve(shortInfo))
+    }
+
+    getShortInfoById(id) {
+        const element = mockData.find((el) => el.id === id);
+        return {
+            id: element.id,
+            title: element.title,
+            img: element.img
+        }
     }
 
     getFullInfo() {
