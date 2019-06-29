@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {compose} from "redux";
-import {fullInfoLoaded, loadingError} from "../../actions";
+import {addToPath, deleteFromPath, fullInfoLoaded, loadingError} from "../../actions";
 import {withDataService} from '../hoc';
 import {CardColumns} from "react-bootstrap";
 import ListOfPlacesItem from '../list-of-places-item';
@@ -10,11 +10,15 @@ import ErrorIndicator from "../error-indicator";
 
 import './list-of-places.css';
 
-const ListOfPlaces = ({info}) => {
+const ListOfPlaces = ({info, addToPath, deleteFromPath}) => {
     const elements = info.map(
         (item) => {
             return (
-                <ListOfPlacesItem itemData={item} key={item.id}/>
+                <ListOfPlacesItem
+                    itemData={item}
+                    key={item.id}
+                    addToPath={() => addToPath(item.id)}
+                    deleteFromPath={() => deleteFromPath(item.id)}/>
             );
         }
     );
@@ -24,11 +28,26 @@ const ListOfPlaces = ({info}) => {
 class ListOfPlacesContainer extends Component {
 
     componentDidMount() {
-        this.props.fetchFullInfo();
+        const {
+            dataService,
+            fullInfoLoaded,
+            loadingError
+        } = this.props;
+
+        dataService.getFullInfo()
+            .then((fullInfo) => fullInfoLoaded(fullInfo))
+            .catch((error) => loadingError(error))
     }
 
     render() {
-        const {fullInfo, listOfPlacesLoading, error, shownCategory} = this.props;
+        const {
+            fullInfo,
+            listOfPlacesLoading,
+            error,
+            shownCategory,
+            addToPath,
+            deleteFromPath
+        } = this.props;
 
         if (listOfPlacesLoading) {
             return <Spinner/>
@@ -45,7 +64,10 @@ class ListOfPlacesContainer extends Component {
             return info
         };
 
-        return <ListOfPlaces info={filterInfo(fullInfo)}/>
+        return <ListOfPlaces
+            info={filterInfo(fullInfo)}
+            addToPath={addToPath}
+            deleteFromPath={deleteFromPath}/>
     }
 }
 
@@ -53,15 +75,11 @@ const mapStateToProps = ({fullInfo, listOfPlacesLoading, error, shownCategory}) 
     return {fullInfo, listOfPlacesLoading, error, shownCategory}
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    const {dataService} = ownProps;
-    return {
-        fetchFullInfo: () => {
-            dataService.getFullInfo()
-                .then((fullInfo) => dispatch(fullInfoLoaded(fullInfo)))
-                .catch((error) => dispatch(loadingError(error)));
-        }
-    }
+const mapDispatchToProps = {
+    addToPath,
+    deleteFromPath,
+    fullInfoLoaded,
+    loadingError
 };
 
 export default compose(

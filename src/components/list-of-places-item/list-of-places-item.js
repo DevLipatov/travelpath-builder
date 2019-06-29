@@ -1,7 +1,7 @@
 import React from 'react';
-import {Card} from "react-bootstrap";
+import {Button, Card} from "react-bootstrap";
 
-const ListOfPlacesItem = ({itemData}) => {
+const ListOfPlacesItem = ({itemData, addToPath, deleteFromPath}) => {
 
     return (
         <Card border="info">
@@ -17,6 +17,17 @@ const ListOfPlacesItem = ({itemData}) => {
                    rel="noopener noreferrer">
                     {itemData.wiki}
                 </a>
+                <br/>
+                <Button
+                    variant="success"
+                    onClick={addToPath}>
+                    Add to path
+                </Button>
+                <Button
+                    variant="danger"
+                    onClick={deleteFromPath}>
+                    Delete from path
+                </Button>
             </Card.Footer>
         </Card>
     )

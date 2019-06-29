@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {compose} from "redux";
 import {connect} from 'react-redux';
-import {Button} from "react-bootstrap";
+import {Badge, Button, ButtonGroup, Image} from "react-bootstrap";
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 import withDataService from "../hoc/with-data-service";
-import {shortInfoLoaded} from "../../actions";
+import {addToPath, deleteFromPath, shortInfoLoaded} from "../../actions";
 
 import './leaflet-map.css';
 
-const LeafletMap = ({info}) => {
+const LeafletMap = ({info, addToPath, deleteFromPath}) => {
 
     const parkingPosition = [53.678732, 23.824612];
 
@@ -17,11 +17,29 @@ const LeafletMap = ({info}) => {
             return (
                 <Marker position={el.coordinates} key={el.id}>
                     <Popup>
-                        {el.title}
-                        <br/>
-                        <img src={el.img}/>
-                        <br/>
-                        <Button variant="outline-info" size="sm">More info</Button>
+                        <h4>
+                            <Badge variant="secondary">
+                                {el.title}
+                            </Badge>
+                        </h4>
+                        <Image src={el.img} fluid/>
+                        <div className="d-flex flex-column">
+                            <ButtonGroup size="sm" className="mt-3">
+                                <Button variant="outline-info" size="sm">More info</Button>
+                                <Button
+                                    variant="success"
+                                    size="sm"
+                                    onClick={() => addToPath(el.id)}>
+                                    Add to path
+                                </Button>
+                                <Button
+                                    variant="danger"
+                                    size="sm"
+                                    onClick={() => deleteFromPath(el.id)}>
+                                    Delete from path
+                                </Button>
+                            </ButtonGroup>
+                        </div>
                     </Popup>
                 </Marker>
             )
@@ -56,17 +74,20 @@ class LeafletMapContainer extends Component {
     }
 
     render() {
-        const {shortInfo, shownCategory} = this.props;
+        const {shortInfo, shownCategory, addToPath, deleteFromPath} = this.props;
 
         const sortInfo = (info) => {
             if (shownCategory !== "All") {
-                return info.filter((el) => el.category===shownCategory)
+                return info.filter((el) => el.category === shownCategory)
             }
 
             return info
         };
 
-        return <LeafletMap info={sortInfo(shortInfo)}/>
+        return <LeafletMap
+            info={sortInfo(shortInfo)}
+            addToPath={addToPath}
+            deleteFromPath={deleteFromPath}/>
     }
 }
 
@@ -74,7 +95,7 @@ const mapStateToProps = ({shortInfo, shownCategory}) => {
     return {shortInfo, shownCategory}
 };
 
-const mapDispatchToProps = {shortInfoLoaded};
+const mapDispatchToProps = {shortInfoLoaded, addToPath, deleteFromPath};
 
 export default compose(
     withDataService(),

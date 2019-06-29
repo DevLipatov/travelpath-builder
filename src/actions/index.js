@@ -41,11 +41,29 @@ const loadingError = (error) => {
     }
 };
 
+const addToPath = (id) => {
+    return {
+        type: 'ADD_TO_PATH',
+        payload: id
+    }
+
+};
+
+const deleteFromPath = (id) => {
+    return {
+        type: 'DELETE_FROM_PATH',
+        payload: id
+    }
+
+};
+
 export {
     categoryChange,
     fullInfoLoaded,
     categoriesLoaded,
     lisOfPlacesLoaded,
     loadingError,
-    shortInfoLoaded
+    shortInfoLoaded,
+    addToPath,
+    deleteFromPath
 };
