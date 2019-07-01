@@ -1,6 +1,8 @@
 import React from 'react';
 import {Button, Card} from "react-bootstrap";
 
+import './list-of-places-item.css';
+
 const ListOfPlacesItem = ({itemData, addToPath, deleteFromPath}) => {
 
     return (

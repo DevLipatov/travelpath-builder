@@ -7,6 +7,8 @@ const initialState = {
     loading: null,
     shortInfo: [],
     shortInfoLoading: true,
+    modalShow: false,
+    modalContent: undefined
 
 };
 
@@ -37,6 +39,7 @@ const reducer = (state = initialState, action) => {
                 }
             }
         case 'DELETE_FROM_PATH' :
+            //TODO rewrite
             let newPathList = [];
             state.pathList.map((el) => {
                 if (el.id !== action.payload) {
@@ -46,8 +49,14 @@ const reducer = (state = initialState, action) => {
             });
             return {
                 ...state,
-                pathList : newPathList
+                pathList: newPathList
             };
+        case 'SHOW_MODAL':
+            return {...state, modalShow: true};
+        case 'HIDE_MODAL':
+            return {...state, modalShow: false};
+        case 'SET_MODAL_CONTENT' :
+            return {...state, modalContent: action.payload};
         default:
             return state;
     }

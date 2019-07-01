@@ -57,6 +57,25 @@ const deleteFromPath = (id) => {
 
 };
 
+const toggleModalOn = () => {
+    return {
+        type: 'SHOW_MODAL'
+    }
+};
+
+const toggleModalOff = () => {
+    return {
+        type: 'HIDE_MODAL'
+    }
+};
+
+const setModalContent = (content) => {
+    return {
+        type: 'SET_MODAL_CONTENT',
+        payload: content
+    }
+};
+
 export {
     categoryChange,
     fullInfoLoaded,
@@ -65,5 +84,8 @@ export {
     loadingError,
     shortInfoLoaded,
     addToPath,
-    deleteFromPath
+    deleteFromPath,
+    toggleModalOn,
+    toggleModalOff,
+    setModalContent
 };

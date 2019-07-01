@@ -5,7 +5,7 @@ import {addToPath, deleteFromPath, fullInfoLoaded, loadingError} from "../../act
 import {withDataService} from '../hoc';
 import {CardColumns} from "react-bootstrap";
 import ListOfPlacesItem from '../list-of-places-item';
-import Spinner from "../spinner";
+import CustomSpinner from "../custom-spinner";
 import ErrorIndicator from "../error-indicator";
 
 import './list-of-places.css';
@@ -50,7 +50,7 @@ class ListOfPlacesContainer extends Component {
         } = this.props;
 
         if (listOfPlacesLoading) {
-            return <Spinner/>
+            return <CustomSpinner/>
         }
 
         if (error) {
