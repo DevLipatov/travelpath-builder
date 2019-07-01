@@ -4,7 +4,14 @@ import {connect} from 'react-redux';
 import {Badge, Button, ButtonGroup, Image} from "react-bootstrap";
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 import withDataService from "../hoc/with-data-service";
-import {addToPath, deleteFromPath, setModalContent, shortInfoLoaded, toggleModalOn} from "../../actions";
+import {
+    addToPath,
+    deleteFromPath,
+    setModalContent,
+    shortInfoLoaded,
+    shortInfoLoadedError,
+    toggleModalOn
+} from "../../actions";
 
 import './leaflet-map.css';
 
@@ -60,11 +67,11 @@ const LeafletMap = ({info, addToPath, deleteFromPath, onInfoClick}) => {
                 OpenStreetMap
                 </a>
                 contributors"/>
-            <Marker position={parkingPosition}>
-                <Popup>
-                    Parking
-                </Popup>
-            </Marker>
+            {/*<Marker position={parkingPosition}>*/}
+            {/*<Popup>*/}
+            {/*Parking*/}
+            {/*</Popup>*/}
+            {/*</Marker>*/}
             {allMarkers}
         </Map>
     );
@@ -73,9 +80,10 @@ const LeafletMap = ({info, addToPath, deleteFromPath, onInfoClick}) => {
 class LeafletMapContainer extends Component {
 
     componentDidMount() {
-        const {dataService, shortInfoLoaded} = this.props;
+        const {dataService, shortInfoLoaded, shortInfoLoadedError} = this.props;
         dataService.getShortInfo()
-            .then((info) => shortInfoLoaded(info));
+            .then((shortData) => shortInfoLoaded(shortData))
+            .catch((error) => shortInfoLoadedError(error));
     }
 
     render() {
@@ -117,6 +125,7 @@ const mapStateToProps = ({shortInfo, shownCategory}) => {
 
 const mapDispatchToProps = {
     shortInfoLoaded,
+    shortInfoLoadedError,
     addToPath,
     deleteFromPath,
     toggleModalOn,

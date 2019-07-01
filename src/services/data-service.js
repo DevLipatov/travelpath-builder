@@ -45,13 +45,20 @@ export default class DataService {
         return new Promise((resolve) => resolve(shortInfo))
     }
 
-    getShortInfoById(id) {
+    getFullInfoById(id) {
         const element = mockData.find((el) => el.id === id);
-        return {
-            id: element.id,
-            title: element.title,
-            img: element.img
-        }
+        return new Promise(
+            (resolve) => {
+                setTimeout(() => resolve(
+                    {
+                        description: element.description,
+                        wiki: element.wiki,
+                        tel: element.tel,
+                        working: element.working
+                    }
+                ), 1700)
+            }
+        )
     }
 
     getFullInfo() {

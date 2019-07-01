@@ -1,3 +1,3 @@
-import CustomModalContainer from './custom-modal';
+import CustomModal from './custom-modal';
 
-export default CustomModalContainer;
+export default CustomModal;

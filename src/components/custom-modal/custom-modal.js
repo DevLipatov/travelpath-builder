@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, Image, Modal} from "react-bootstrap";
 import {addToPath, toggleModalOff} from "../../actions";
+import {compose} from "redux";
+import withDataService from "../hoc/with-data-service";
 
 import './custom-modal.css';
 
@@ -18,10 +20,10 @@ const CustomModal = ({modalShow, modalContent, onAddClick, toggleModalOff}) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Image src={modalContent.img} fluid />
+                <Image src={modalContent.img} fluid/>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={toggleModalOff} >
+                <Button variant="secondary" onClick={toggleModalOff}>
                     Close
                 </Button>
                 <Button variant="primary" onClick={onAddClick}>
@@ -35,10 +37,14 @@ const CustomModal = ({modalShow, modalContent, onAddClick, toggleModalOff}) => {
 class CustomModalContainer extends Component {
 
     render() {
-        const {modalShow, toggleModalOff, modalContent, addToPath} = this.props;
+        const {
+            modalShow,
+            toggleModalOff,
+            modalContent,
+            addToPath
+        } = this.props;
 
         const onAddClick = () => {
-
             addToPath(modalContent.id);
             toggleModalOff();
         };
@@ -52,8 +58,7 @@ class CustomModalContainer extends Component {
                 modalShow={modalShow}
                 modalContent={modalContent}
                 onAddClick={onAddClick}
-                toggleModalOff={toggleModalOff}
-            />
+                toggleModalOff={toggleModalOff}/>
         )
     }
 }
@@ -64,4 +69,7 @@ const mapStateToProps = ({modalShow, modalContent}) => {
 
 const mapDispatchToProps = {toggleModalOff, addToPath};
 
-export default connect(mapStateToProps, mapDispatchToProps)(CustomModalContainer);
+export default compose(
+    withDataService(),
+    connect(mapStateToProps, mapDispatchToProps)
+)(CustomModalContainer);

@@ -18,7 +18,9 @@ const mockData = [
         "%8F_%D1%86%D0%B0%D1%80%D0%BA%D0%B2%D0%B0_2.JPG/267px-%D0%93%D1%80%D0%BE%D0%B" +
         "4%D0%BD%D0%B0._%D0%9A%D0%B0%D0%BB%D0%BE%D0%B6%D1%81%D0%BA%D0%B0%D1%8F_%D1%86" +
         "%D0%B0%D1%80%D0%BA%D0%B2%D0%B0_2.JPG",
-        inpath : true
+        inpath : true,
+        tel: "телефон",
+        working: "время"
     },
     {
         id: "2",
@@ -36,7 +38,9 @@ const mockData = [
         coordinates: [53.677017, 23.823567],
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hrodna_Batory_Old_" +
         "Castle_cityside_2006-1.jpg/280px-Hrodna_Batory_Old_Castle_cityside_2006-1.jpg",
-        inpath : true
+        inpath : true,
+        tel: "телефон",
+        working: "время"
     },
     {
         id: "3",
@@ -50,7 +54,9 @@ const mockData = [
         coordinates: [53.687155, 23.840461],
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Grodno%2C_Luteran_Church" +
         ".JPG/280px-Grodno%2C_Luteran_Church.JPG",
-        inpath : false
+        inpath : false,
+        tel: "телефон",
+        working: "время"
     },
     {
         id: "4",
@@ -64,7 +70,9 @@ const mockData = [
         coordinates: [53.687155, 23.840461],
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Grodno%2C_Luteran_Church" +
         ".JPG/280px-Grodno%2C_Luteran_Church.JPG",
-        inpath : false
+        inpath : false,
+        tel: "телефон",
+        working: "время"
     }
 ];
 

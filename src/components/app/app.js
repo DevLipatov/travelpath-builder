@@ -4,11 +4,11 @@ import NewPathPage from '../new-path-page/index';
 import ReadyPathPage from '../ready-path-page/index';
 import NavbarHeader from '../navbar-header/index';
 import MyPathPage from '../my-path-page/index';
-import CustomModal from "../custom-modal/custom-modal";
+import CustomModal from "../custom-modal";
 
 import './app.css';
 
-class App extends Component{
+export default class App extends Component {
 
     render() {
         return (
@@ -24,5 +24,3 @@ class App extends Component{
         )
     }
 }
-
-export default App;

@@ -1,3 +1,3 @@
-import ListOfPlacesComponent from './list-of-places';
+import ListOfPlaces from './list-of-places';
 
-export default ListOfPlacesComponent;
+export default ListOfPlaces;

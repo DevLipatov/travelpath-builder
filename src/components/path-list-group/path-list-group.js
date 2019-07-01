@@ -1,14 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Accordion, Badge, Button, Card} from "react-bootstrap";
-import {deleteFromPath} from "../../actions";
+import {Accordion, Badge, Button, ButtonGroup, Card} from "react-bootstrap";
+import {deleteFromPath, setModalContent, toggleModalOn} from "../../actions";
 
 import './path-list-group.css';
 
 class PathListGroup extends Component {
 
     render() {
-        const {pathList, deleteFromPath} = this.props;
+        const {pathList, deleteFromPath, setModalContent, toggleModalOn} = this.props;
+
+        const onInfoClick = (info) => {
+            setModalContent(info);
+            toggleModalOn();
+        };
 
         const elements = pathList.map(
             (item) => {
@@ -23,14 +28,20 @@ class PathListGroup extends Component {
                                 <Card.Img src={item.img}/>
                                 <Card.Body>
                                     <Card.Text>Short info</Card.Text>
-                                    <div className="d-flex justify-content-end">
+                                    <ButtonGroup size="sm" className="d-flex">
+                                        <Button
+                                            variant="info"
+                                            size="sm"
+                                            onClick={() => onInfoClick(item)}>
+                                            More info
+                                        </Button>
                                         <Button
                                             variant="danger"
                                             size="sm"
                                             onClick={() => deleteFromPath(item.id)}>
                                             Delete from path
                                         </Button>
-                                    </div>
+                                    </ButtonGroup>
                                 </Card.Body>
                             </Card>
                         </Accordion.Collapse>
@@ -51,6 +62,6 @@ const mapStateToProps = ({pathList}) => {
     return {pathList}
 };
 
-const mapDispatchToProps = {deleteFromPath};
+const mapDispatchToProps = {deleteFromPath, setModalContent, toggleModalOn};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PathListGroup);

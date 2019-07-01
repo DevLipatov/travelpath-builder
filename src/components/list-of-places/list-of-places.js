@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {compose} from "redux";
-import {addToPath, deleteFromPath, fullInfoLoaded, loadingError} from "../../actions";
+import {addToPath, deleteFromPath, shortInfoLoaded, shortInfoLoadedError} from "../../actions";
 import {withDataService} from '../hoc';
 import {CardColumns} from "react-bootstrap";
 import ListOfPlacesItem from '../list-of-places-item';
@@ -27,33 +27,33 @@ const ListOfPlaces = ({info, addToPath, deleteFromPath}) => {
 
 class ListOfPlacesContainer extends Component {
 
-    componentDidMount() {
-        const {
-            dataService,
-            fullInfoLoaded,
-            loadingError
-        } = this.props;
-
-        dataService.getFullInfo()
-            .then((fullInfo) => fullInfoLoaded(fullInfo))
-            .catch((error) => loadingError(error))
-    }
+    // componentDidMount() {
+    //     const {
+    //         dataService,
+    //         fullInfoLoaded,
+    //         fullInfoLoadedError
+    //     } = this.props;
+    //
+    //     dataService.getFullInfo()
+    //         .then((fullInfo) => fullInfoLoaded(fullInfo))
+    //         .catch((error) => fullInfoLoadedError(error))
+    // }
 
     render() {
         const {
-            fullInfo,
-            listOfPlacesLoading,
-            error,
+            shortInfo,
+            shortInfoLoading,
+            shortInfoError,
             shownCategory,
             addToPath,
             deleteFromPath
         } = this.props;
 
-        if (listOfPlacesLoading) {
+        if (shortInfoLoading) {
             return <CustomSpinner/>
         }
 
-        if (error) {
+        if (shortInfoError) {
             return <ErrorIndicator/>
         }
 
@@ -65,21 +65,21 @@ class ListOfPlacesContainer extends Component {
         };
 
         return <ListOfPlaces
-            info={filterInfo(fullInfo)}
+            info={filterInfo(shortInfo)}
             addToPath={addToPath}
             deleteFromPath={deleteFromPath}/>
     }
 }
 
-const mapStateToProps = ({fullInfo, listOfPlacesLoading, error, shownCategory}) => {
-    return {fullInfo, listOfPlacesLoading, error, shownCategory}
+const mapStateToProps = ({shortInfo, shortInfoLoading, shortInfoError, shownCategory}) => {
+    return {shortInfo, shortInfoLoading, shortInfoError, shownCategory}
 };
 
 const mapDispatchToProps = {
     addToPath,
     deleteFromPath,
-    fullInfoLoaded,
-    loadingError
+    shortInfoLoaded,
+    shortInfoLoadedError
 };
 
 export default compose(

@@ -27,16 +27,16 @@ const categoriesLoaded = (categories) => {
     }
 };
 
-const lisOfPlacesLoaded = () => {
+const fullInfoLoadedError = (error) => {
     return {
-        //TODO rename
-        type: 'LIST_OF_PLACES_LOADED'
+        type: 'FETCH_FULL_INFO_FAILURE',
+        payload:  error
     }
 };
 
-const loadingError = (error) => {
+const shortInfoLoadedError = (error) => {
     return {
-        type: 'LOADING_FAILURE',
+        type: 'FETCH_SHORT_INFO_FAILURE',
         payload:  error
     }
 };
@@ -80,12 +80,12 @@ export {
     categoryChange,
     fullInfoLoaded,
     categoriesLoaded,
-    lisOfPlacesLoaded,
-    loadingError,
+    fullInfoLoadedError,
     shortInfoLoaded,
     addToPath,
     deleteFromPath,
     toggleModalOn,
     toggleModalOff,
-    setModalContent
+    setModalContent,
+    shortInfoLoadedError
 };

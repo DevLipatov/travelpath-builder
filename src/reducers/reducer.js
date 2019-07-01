@@ -1,29 +1,32 @@
 const initialState = {
     categories: ["All"],
-    shownCategory: "All",
     pathList: [],
-    fullInfo: [],
-    listOfPlacesLoading: true,
-    loading: null,
     shortInfo: [],
+    fullInfo: undefined,
+    shownCategory: "All",
     shortInfoLoading: true,
+    shortInfoError: null,
+    fullInfoLoading: true,
+    fullInfoError: null,
+    listOfPlacesLoading: true,
     modalShow: false,
     modalContent: undefined
-
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'CHANGE_CATEGORY' :
             return {...state, shownCategory: action.payload};
-        case 'FETCH_FULL_INFO_SUCCESS' :
-            return {...state, fullInfo: action.payload, listOfPlacesLoading: false};
-        case 'FETCH_CATEGORIES_SUCCESS' :
-            return {...state, categories: action.payload};
-        case 'LOADING_FAILURE' :
-            return {...state, loading: action.error, listOfPlacesLoading: false};
         case 'FETCH_SHORT_INFO_SUCCESS' :
             return {...state, shortInfo: action.payload, shortInfoLoading: false};
+        case 'FETCH_SHORT_INFO_FAILURE' :
+            return {...state, shortInfoLoadingError: action.error, shortInfoError: false};
+        case 'FETCH_FULL_INFO_SUCCESS' :
+            return {...state, fullInfo: action.payload, listOfPlacesLoading: false};
+        case 'FETCH_FULL_INFO_FAILURE' :
+            return {...state, fullInfoLoadingError: action.error, listOfPlacesLoading: false};
+        case 'FETCH_CATEGORIES_SUCCESS' :
+            return {...state, categories: action.payload};
         case 'ADD_TO_PATH' :
             const itemIndex = state.pathList.findIndex((el) => el.id === action.payload);
             if (itemIndex >= 0) {
