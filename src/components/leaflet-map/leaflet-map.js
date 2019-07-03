@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import {compose} from "redux";
 import {connect} from 'react-redux';
-import {Badge, Button, ButtonGroup, Image} from "react-bootstrap";
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 import withDataService from "../hoc/with-data-service";
+import ShortInfoCard from '../short-info-card';
 import {
-    addToPath,
-    deleteFromPath,
-    setModalContent,
     shortInfoLoaded,
     shortInfoLoadedError,
     toggleModalOn
@@ -15,43 +12,16 @@ import {
 
 import './leaflet-map.css';
 
-const LeafletMap = ({info, addToPath, deleteFromPath, onInfoClick}) => {
+const LeafletMap = ({sortedData}) => {
 
     const parkingPosition = [53.678732, 23.824612];
 
-    const allMarkers = info.map(
+    const allMarkers = sortedData.map(
         (el) => {
             return (
                 <Marker position={el.coordinates} key={el.id}>
                     <Popup>
-                        <h4>
-                            <Badge variant="secondary">
-                                {el.title}
-                            </Badge>
-                        </h4>
-                        <Image src={el.img} fluid/>
-                        <div className="d-flex flex-column">
-                            <ButtonGroup size="sm" className="mt-3">
-                                <Button
-                                    variant="info"
-                                    size="sm"
-                                    onClick={() => onInfoClick(el)}>
-                                    More info
-                                </Button>
-                                <Button
-                                    variant="success"
-                                    size="sm"
-                                    onClick={() => addToPath(el.id)}>
-                                    Add to path
-                                </Button>
-                                <Button
-                                    variant="danger"
-                                    size="sm"
-                                    onClick={() => deleteFromPath(el.id)}>
-                                    Delete from path
-                                </Button>
-                            </ButtonGroup>
-                        </div>
+                        <ShortInfoCard data={el}/>
                     </Popup>
                 </Marker>
             )
@@ -61,12 +31,7 @@ const LeafletMap = ({info, addToPath, deleteFromPath, onInfoClick}) => {
     return (
         <Map center={parkingPosition} zoom={15}>
             <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution="&copy;
-                <a href=&quot;http://osm.org/copyright&quot;>
-                OpenStreetMap
-                </a>
-                contributors"/>
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
             {/*<Marker position={parkingPosition}>*/}
             {/*<Popup>*/}
             {/*Parking*/}
@@ -90,10 +55,6 @@ class LeafletMapContainer extends Component {
         const {
             shortInfo,
             shownCategory,
-            addToPath,
-            deleteFromPath,
-            toggleModalOn,
-            setModalContent
         } = this.props;
 
         const sortInfo = (info) => {
@@ -104,18 +65,7 @@ class LeafletMapContainer extends Component {
             return info
         };
 
-        const onInfoClick = (info) => {
-            setModalContent(info);
-            toggleModalOn();
-        };
-
-
-        return <LeafletMap
-            info={sortInfo(shortInfo)}
-            addToPath={addToPath}
-            deleteFromPath={deleteFromPath}
-            toggleModalOn={toggleModalOn}
-            onInfoClick={onInfoClick}/>
+        return <LeafletMap sortedData={sortInfo(shortInfo)}/>
     }
 }
 
@@ -126,10 +76,7 @@ const mapStateToProps = ({shortInfo, shownCategory}) => {
 const mapDispatchToProps = {
     shortInfoLoaded,
     shortInfoLoadedError,
-    addToPath,
-    deleteFromPath,
     toggleModalOn,
-    setModalContent
 };
 
 export default compose(

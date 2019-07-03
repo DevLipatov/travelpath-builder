@@ -38,7 +38,8 @@ export default class DataService {
                         category: el.category,
                         title: el.title,
                         img: el.img,
-                        coordinates: el.coordinates
+                        coordinates: el.coordinates,
+
                     }]
             )
         );

@@ -1,0 +1,7 @@
+.card-columns {
+    column-count: 1
+}
+
+.card-columns .card {
+    width: 25%;
+}

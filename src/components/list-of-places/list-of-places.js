@@ -1,52 +1,34 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {compose} from "redux";
-import {addToPath, deleteFromPath, shortInfoLoaded, shortInfoLoadedError} from "../../actions";
-import {withDataService} from '../hoc';
 import {CardColumns} from "react-bootstrap";
-import ListOfPlacesItem from '../list-of-places-item';
+import {shortInfoLoaded, shortInfoLoadedError} from "../../actions";
+import {withDataService} from '../hoc';
 import CustomSpinner from "../custom-spinner";
 import ErrorIndicator from "../error-indicator";
+import ShortInfoCard from '../short-info-card';
 
 import './list-of-places.css';
 
-const ListOfPlaces = ({info, addToPath, deleteFromPath}) => {
+const ListOfPlaces = ({info}) => {
     const elements = info.map(
         (item) => {
             return (
-                <ListOfPlacesItem
-                    itemData={item}
-                    key={item.id}
-                    addToPath={() => addToPath(item.id)}
-                    deleteFromPath={() => deleteFromPath(item.id)}/>
+                <ShortInfoCard data={item} key={item.id}/>
             );
         }
     );
-    return <CardColumns>{elements}</CardColumns>
+    return <CardColumns>{elements} {elements} {elements}</CardColumns>
 };
 
 class ListOfPlacesContainer extends Component {
-
-    // componentDidMount() {
-    //     const {
-    //         dataService,
-    //         fullInfoLoaded,
-    //         fullInfoLoadedError
-    //     } = this.props;
-    //
-    //     dataService.getFullInfo()
-    //         .then((fullInfo) => fullInfoLoaded(fullInfo))
-    //         .catch((error) => fullInfoLoadedError(error))
-    // }
 
     render() {
         const {
             shortInfo,
             shortInfoLoading,
             shortInfoError,
-            shownCategory,
-            addToPath,
-            deleteFromPath
+            shownCategory
         } = this.props;
 
         if (shortInfoLoading) {
@@ -64,10 +46,7 @@ class ListOfPlacesContainer extends Component {
             return info
         };
 
-        return <ListOfPlaces
-            info={filterInfo(shortInfo)}
-            addToPath={addToPath}
-            deleteFromPath={deleteFromPath}/>
+        return <ListOfPlaces info={filterInfo(shortInfo)}/>
     }
 }
 
@@ -75,12 +54,7 @@ const mapStateToProps = ({shortInfo, shortInfoLoading, shortInfoError, shownCate
     return {shortInfo, shortInfoLoading, shortInfoError, shownCategory}
 };
 
-const mapDispatchToProps = {
-    addToPath,
-    deleteFromPath,
-    shortInfoLoaded,
-    shortInfoLoadedError
-};
+const mapDispatchToProps = {shortInfoLoaded, shortInfoLoadedError};
 
 export default compose(
     withDataService(),
