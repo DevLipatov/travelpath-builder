@@ -1,11 +1,20 @@
 import React, {Component} from 'react';
+import {compose} from "redux";
 import {connect} from 'react-redux';
 import {Button, ButtonGroup, Card} from "react-bootstrap";
-import {addToPath, deleteFromPath, setModalContent, toggleModalOn} from "../../actions";
+import {
+addToPath,
+deleteFromPath,
+fullInfoLoaded,
+fullInfoLoadedError,
+setModalContent,
+toggleModalOn
+} from "../../actions";
 
 import './short-info-card.css';
+import withDataService from "../hoc/with-data-service";
 
-class ShortInfoCard extends Component{
+class ShortInfoCard extends Component {
 
     render() {
         const {
@@ -13,24 +22,33 @@ class ShortInfoCard extends Component{
             setModalContent,
             toggleModalOn,
             addToPath,
-            deleteFromPath
+            deleteFromPath,
+            dataService,
+            fullInfoLoaded,
+            fullInfoLoadedError
         } = this.props;
 
-        const onInfoClick = (info) => {
-            setModalContent(info);
+        const onInfoClick = () => {
+            setModalContent(data);
+            console.log(data.id);
+            dataService.getFullInfoById(data.id)
+                .then((data) => fullInfoLoaded(data))
+                .catch((error) => fullInfoLoadedError(error));
             toggleModalOn();
         };
 
         return (
             <Card>
-                <Card.Img variant="top" src={data.img}/>
+                <div className="card-img-container">
+                    <Card.Img variant="top" src={data.img}/>
+                </div>
                 <Card.Body>
                     <Card.Title>{data.title}</Card.Title>
                     <ButtonGroup size="sm" className="d-flex">
                         <Button
                             variant="info"
                             size="sm"
-                            onClick={() => onInfoClick(data)}>
+                            onClick={() => onInfoClick()}>
                             Full info
                         </Button>
                         <Button
@@ -52,6 +70,16 @@ class ShortInfoCard extends Component{
     }
 }
 
-const mapDispatchToProps = {setModalContent, toggleModalOn, addToPath, deleteFromPath};
+const mapDispatchToProps = {
+    setModalContent,
+    toggleModalOn,
+    addToPath,
+    deleteFromPath,
+    fullInfoLoaded,
+    fullInfoLoadedError
+};
 
-export default connect(null, mapDispatchToProps)(ShortInfoCard);
+export default compose(
+    withDataService(),
+    connect(null, mapDispatchToProps)
+)(ShortInfoCard);

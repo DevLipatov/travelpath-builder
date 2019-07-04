@@ -18,7 +18,7 @@ const ListOfPlaces = ({info}) => {
             );
         }
     );
-    return <CardColumns>{elements} {elements} {elements}</CardColumns>
+    return <CardColumns>{elements}</CardColumns>
 };
 
 class ListOfPlacesContainer extends Component {

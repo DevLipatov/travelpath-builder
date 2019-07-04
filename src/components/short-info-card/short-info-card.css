@@ -6,3 +6,13 @@
     margin-top: 0.5rem;
     text-align: center;
 }
+
+.card-img-container {
+    overflow: hidden;
+    max-height: 15rem;
+    align-content: end;
+}
+
+.card-img-top {
+    min-width: 100%;
+}

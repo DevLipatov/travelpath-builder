@@ -59,13 +59,13 @@ const deleteFromPath = (id) => {
 
 const toggleModalOn = () => {
     return {
-        type: 'SHOW_MODAL'
+        type: 'TOGGLE_MODAL_ON'
     }
 };
 
 const toggleModalOff = () => {
     return {
-        type: 'HIDE_MODAL'
+        type: 'TOGGLE_MODAL_OFF'
     }
 };
 
@@ -78,14 +78,14 @@ const setModalContent = (content) => {
 
 export {
     categoryChange,
-    fullInfoLoaded,
     categoriesLoaded,
-    fullInfoLoadedError,
     shortInfoLoaded,
-    addToPath,
-    deleteFromPath,
+    shortInfoLoadedError,
+    fullInfoLoaded,
+    fullInfoLoadedError,
     toggleModalOn,
     toggleModalOff,
-    setModalContent,
-    shortInfoLoadedError
+    addToPath,
+    deleteFromPath,
+    setModalContent
 };

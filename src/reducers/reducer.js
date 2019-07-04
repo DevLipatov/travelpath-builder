@@ -2,13 +2,12 @@ const initialState = {
     categories: ["All"],
     pathList: [],
     shortInfo: [],
-    fullInfo: undefined,
+    fullInfo: [],
     shownCategory: "All",
     shortInfoLoading: true,
     shortInfoError: null,
     fullInfoLoading: true,
     fullInfoError: null,
-    listOfPlacesLoading: true,
     modalShow: false,
     modalContent: undefined
 };
@@ -20,11 +19,11 @@ const reducer = (state = initialState, action) => {
         case 'FETCH_SHORT_INFO_SUCCESS' :
             return {...state, shortInfo: action.payload, shortInfoLoading: false};
         case 'FETCH_SHORT_INFO_FAILURE' :
-            return {...state, shortInfoLoadingError: action.error, shortInfoError: false};
+            return {...state, shortInfoError: action.error};
         case 'FETCH_FULL_INFO_SUCCESS' :
-            return {...state, fullInfo: action.payload, listOfPlacesLoading: false};
+            return {...state, fullInfo: action.payload, fullInfoLoading: false};
         case 'FETCH_FULL_INFO_FAILURE' :
-            return {...state, fullInfoLoadingError: action.error, listOfPlacesLoading: false};
+            return {...state, fullInfoError: action.error, fullInfoLoading: true};
         case 'FETCH_CATEGORIES_SUCCESS' :
             return {...state, categories: action.payload};
         case 'ADD_TO_PATH' :
@@ -54,10 +53,10 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 pathList: newPathList
             };
-        case 'SHOW_MODAL':
+        case 'TOGGLE_MODAL_ON':
             return {...state, modalShow: true};
-        case 'HIDE_MODAL':
-            return {...state, modalShow: false};
+        case 'TOGGLE_MODAL_OFF':
+            return {...state, modalShow: false, fullInfo:[], fullInfoLoading: true};
         case 'SET_MODAL_CONTENT' :
             return {...state, modalContent: action.payload};
         default:

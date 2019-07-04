@@ -43,7 +43,7 @@ export default class DataService {
                     }]
             )
         );
-        return new Promise((resolve) => resolve(shortInfo))
+        return new Promise((resolve) => {setTimeout(()=> resolve(shortInfo), 1700)})
     }
 
     getFullInfoById(id) {
