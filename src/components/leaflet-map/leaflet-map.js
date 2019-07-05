@@ -4,15 +4,12 @@ import {connect} from 'react-redux';
 import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
 import withDataService from "../hoc/with-data-service";
 import ShortInfoCard from '../short-info-card';
-import {
-    shortInfoLoaded,
-    shortInfoLoadedError,
-    toggleModalOn
-} from "../../actions";
+import {shortInfoLoaded, shortInfoLoadedError, toggleModalOn} from "../../actions";
+import Routing from './routing'
 
 import './leaflet-map.css';
 
-const LeafletMap = ({sortedData}) => {
+const LeafletMap = ({sortedData, saveMap, routing}) => {
 
     const parkingPosition = [53.678732, 23.824612];
 
@@ -29,15 +26,11 @@ const LeafletMap = ({sortedData}) => {
     );
 
     return (
-        <Map center={parkingPosition} zoom={15}>
+        <Map center={parkingPosition} zoom={15} ref={saveMap}>
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-            {/*<Marker position={parkingPosition}>*/}
-            {/*<Popup>*/}
-            {/*Parking*/}
-            {/*</Popup>*/}
-            {/*</Marker>*/}
             {allMarkers}
+            {routing}
         </Map>
     );
 };
@@ -51,10 +44,15 @@ class LeafletMapContainer extends Component {
             .catch((error) => shortInfoLoadedError(error));
     }
 
+    saveMap = map => {
+        this.map = map;
+        this.setState({});
+    };
+
     render() {
         const {
             shortInfo,
-            shownCategory,
+            shownCategory
         } = this.props;
 
         const sortInfo = (info) => {
@@ -65,18 +63,20 @@ class LeafletMapContainer extends Component {
             return info
         };
 
-        return <LeafletMap sortedData={sortInfo(shortInfo)}/>
+        return <LeafletMap sortedData={sortInfo(shortInfo)}
+                           saveMap={this.saveMap}
+                           routing={<Routing map={this.map}/>}/>
     }
 }
 
-const mapStateToProps = ({shortInfo, shownCategory}) => {
-    return {shortInfo, shownCategory}
+const mapStateToProps = ({shortInfo, shownCategory, mapInit}) => {
+    return {shortInfo, shownCategory, mapInit}
 };
 
 const mapDispatchToProps = {
     shortInfoLoaded,
     shortInfoLoadedError,
-    toggleModalOn,
+    toggleModalOn
 };
 
 export default compose(

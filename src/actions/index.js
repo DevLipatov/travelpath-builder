@@ -76,6 +76,12 @@ const setModalContent = (content) => {
     }
 };
 
+const setMapInitTrue = () => {
+    return {
+        type: 'SET_MAP_LOADED_TRUE'
+    }
+};
+
 export {
     categoryChange,
     categoriesLoaded,
@@ -87,5 +93,6 @@ export {
     toggleModalOff,
     addToPath,
     deleteFromPath,
-    setModalContent
+    setModalContent,
+    setMapInitTrue
 };

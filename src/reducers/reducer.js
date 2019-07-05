@@ -9,7 +9,8 @@ const initialState = {
     fullInfoLoading: true,
     fullInfoError: null,
     modalShow: false,
-    modalContent: undefined
+    modalContent: undefined,
+    mapInit: true
 };
 
 const reducer = (state = initialState, action) => {
@@ -59,6 +60,8 @@ const reducer = (state = initialState, action) => {
             return {...state, modalShow: false, fullInfo:[], fullInfoLoading: true};
         case 'SET_MODAL_CONTENT' :
             return {...state, modalContent: action.payload};
+        case 'SET_MAP_INIT_TRUE' :
+            return {...state, mapInit: true};
         default:
             return state;
     }
