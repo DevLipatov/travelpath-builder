@@ -30,7 +30,7 @@ const LeafletMap = ({sortedData, saveMap, routing}) => {
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
             {allMarkers}
-            {routing}
+            {/*{routing}*/}
         </Map>
     );
 };
